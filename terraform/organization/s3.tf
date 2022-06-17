@@ -4,7 +4,7 @@
 
 module "s3" {
   for_each = local.s3
-  source   = "../../modules/s3_4.0"
+  source   = "../modules/s3_4.0"
 
   providers = {
     aws = aws.aws

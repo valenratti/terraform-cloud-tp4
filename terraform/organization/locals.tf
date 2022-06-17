@@ -1,13 +1,13 @@
 locals {
   bucket_name = "b123123123123-itba-cloud-computing"
-  path        = "../../resources"
+  path        = "../resources"
 
   s3 = {
 
     # 1 - Website
     website = {
       bucket_name = local.bucket_name
-      path        = "../../resources"
+      path        = "../resources"
 
       objects = {
         error = {
