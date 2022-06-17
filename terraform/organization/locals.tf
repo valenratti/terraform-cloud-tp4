@@ -38,3 +38,14 @@ locals {
   vpc_private_subnet_name   = "grupo-8-private-subnet-vpc"
   private_subnet_cidr_block = "10.0.1.0/24"
 }
+
+locals {
+  vpc_endpoint_services = {
+    dynamodb = {
+      service = "com.amazonaws.us-east-1.dynamodb"
+    }
+    s3 = {
+      service = "com.amazonaws.us-east-1.s3"
+    }
+  }
+}
