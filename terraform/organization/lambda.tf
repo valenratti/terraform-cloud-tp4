@@ -34,7 +34,7 @@ resource "aws_lambda_function" "dynamodb_lambda" {
   runtime       = "python3.9"
 
   vpc_config {
-    subnet_ids = [module.lambda_vpc.private_subnet_id]
+    subnet_ids         = [module.lambda_vpc.private_subnet_id]
     security_group_ids = [module.lambda_vpc.default_security_group_id]
   }
 }
