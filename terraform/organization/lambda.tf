@@ -30,6 +30,7 @@ resource "aws_lambda_function" "dynamodb_lambda" {
   filename      = "${local.path}/lambda/lambda.zip"
   function_name = "AWSLambdaHandler-test-attach-vpc"
   role          = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/LabRole"
+  source_code_hash = filebase64sha256("${local.path}/lambda/lambda.zip")
   handler       = "lambda_handler.main"
   runtime       = "python3.9"
 

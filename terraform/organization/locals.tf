@@ -29,6 +29,11 @@ locals {
     www-website = {
       bucket_name = "www.${local.bucket_name}"
     }
+
+    #3 - Logs
+    logs = {
+      bucket_name = "${local.bucket_name}/logs"
+    }
   }
 }
 
