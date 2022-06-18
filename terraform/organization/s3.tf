@@ -14,15 +14,15 @@ module "s3" {
   objects     = try(each.value.objects, {})
 }
 
-resource "aws_s3_object" "this" {
-  provider = aws.aws
+# resource "aws_s3_object" "this" {
+#   provider = aws.aws
 
-  bucket        = module.s3["website"].id
-  key           = "index.html"
-  content       = data.template_file.userdata.rendered
-  content_type  = "text/html"
-  storage_class = "STANDARD"
-}
+#   bucket        = module.s3["website"].id
+#   key           = "index.html"
+#   content       = data.template_file.userdata.rendered
+#   content_type  = "text/html"
+#   storage_class = "STANDARD"
+# }
 
 # Another way to use it, is to directly pass the following arguments to the resource
 
