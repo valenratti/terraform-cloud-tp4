@@ -26,7 +26,7 @@
 
 # 1 - S3 bucket
 resource "aws_s3_bucket" "reports_bucket" {
-  bucket              = "reports-grupo8-20221c"
+  bucket              = "reports-grupo8-2022-1c"
   object_lock_enabled = false
 
   tags = {
