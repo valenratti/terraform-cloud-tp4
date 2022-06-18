@@ -12,7 +12,8 @@ module "lambda_vpc" {
 
 }
 
-resource "aws_vpc_endpoint" "dynamodb_endpoint" {
-  vpc_id = module.lambda_vpc.vpc_id
-  service_name = "com.amazonaws.us-east-1.dynamodb"
+resource "aws_vpc_endpoint" "this" {
+  for_each = local.vpc_endpoint_services
+  vpc_id       = module.lambda_vpc.vpc_id
+  service_name = each.value.service
 }

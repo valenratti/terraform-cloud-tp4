@@ -29,6 +29,11 @@ locals {
     www-website = {
       bucket_name = "www.${local.bucket_name}"
     }
+
+    #3 - Logs
+    logs = {
+      bucket_name = "${local.bucket_name}/logs"
+    }
   }
 }
 
@@ -37,4 +42,15 @@ locals {
   vpc_cidr_block            = "10.0.0.0/16"
   vpc_private_subnet_name   = "grupo-8-private-subnet-vpc"
   private_subnet_cidr_block = "10.0.1.0/24"
+}
+
+locals {
+  vpc_endpoint_services = {
+    dynamodb = {
+      service = "com.amazonaws.us-east-1.dynamodb"
+    }
+    s3 = {
+      service = "com.amazonaws.us-east-1.s3"
+    }
+  }
 }
