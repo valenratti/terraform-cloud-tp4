@@ -1,23 +1,23 @@
 variable "table_name" {
   description = "Name of the table"
-  type = string
+  type        = string
 }
 
 variable "read_capacity" {
   description = "Read capacity units of the table"
-  type = number
-  default = 10
+  type        = number
+  default     = 10
 }
 
 variable "write_capacity" {
   description = "Write capacity units of the table"
-  type = number
-  default = 10
+  type        = number
+  default     = 10
 }
 
 variable "hash_key" {
   description = "Hash key of the table"
-  type = string
+  type        = string
 }
 
 variable "attribute" {

@@ -10,10 +10,10 @@ resource "aws_route53_zone" "this" {
   force_destroy     = var.force_destroy
 
   tags = {
-    "name"          = var.domain
+    "name"           = var.domain
     "product-domain" = var.product_domain
-    "environment"   = var.environment
-    "description"   = local.description
+    "environment"    = var.environment
+    "description"    = local.description
     "managed_by"     = local.managed_by
   }
 }

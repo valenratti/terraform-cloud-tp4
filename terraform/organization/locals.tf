@@ -47,10 +47,30 @@ locals {
 locals {
   vpc_endpoint_services = {
     dynamodb = {
-      service = "com.amazonaws.us-east-1.dynamodb"
+      service       = "com.amazonaws.us-east-1.dynamodb"
+      endpoint_type = "Gateway"
     }
     s3 = {
-      service = "com.amazonaws.us-east-1.s3"
+      service       = "com.amazonaws.us-east-1.s3"
+      endpoint_type = "Gateway"
+    }
+    sns = {
+      service       = "com.amazonaws.us-east-1.sns"
+      endpoint_type = "Interface"
+    }
+  }
+}
+
+locals {
+  sns_topics = {
+    alarms = {
+      name = "sns-alarms"
+      subscriptions = [
+        {
+          protocol = "email"
+          endpoint = "testcloudgrupo8@yopmail.com"
+        }
+      ]
     }
   }
 }

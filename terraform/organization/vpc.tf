@@ -13,7 +13,8 @@ module "lambda_vpc" {
 }
 
 resource "aws_vpc_endpoint" "this" {
-  for_each = local.vpc_endpoint_services
-  vpc_id       = module.lambda_vpc.vpc_id
-  service_name = each.value.service
+  for_each          = local.vpc_endpoint_services
+  vpc_id            = module.lambda_vpc.vpc_id
+  service_name      = each.value.service
+  vpc_endpoint_type = try(each.value.endpoint_type, "Gateway")
 }
