@@ -2,17 +2,33 @@
 # Amazon S3 resources
 # ---------------------------------------------------------------------------
 
-# module "s3" {
-#   for_each = local.s3
-#   source   = "../modules/s3_4.0"
+module "logs" {
+  source = "../modules/s3_4.0"
 
-#   providers = {
-#     aws = aws.aws
-#   }
+  providers = {
+    aws = aws.aws
+  }
 
-#   bucket_name = each.value.bucket_name
-#   objects     = try(each.value.objects, {})
-# }
+  bucket_name = local.s3.logs.bucket_name
+  bucket_acl  = local.s3.logs.acl
+}
+
+module "website" {
+  for_each = local.s3.static_website
+  source   = "../modules/s3_4.0"
+
+  providers = {
+    aws = aws.aws
+  }
+
+  bucket_name = each.value.bucket_name
+  website     = try(each.value.website, null)
+  logging = {
+    target_bucket = module.logs.bucket_id
+    target_prefix = "log/"
+  }
+  objects = try(each.value.objects, {})
+}
 
 # resource "aws_s3_object" "this" {
 #   provider = aws.aws

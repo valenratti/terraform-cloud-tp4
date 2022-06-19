@@ -7,6 +7,24 @@ variable "bucket_name" {
   description = "The name of the bucket. Must be less than or equal to 63 characters in length."
 }
 
+variable "object_lock_enabled" {
+  type        = bool
+  description = "Boolean to set object lock"
+  default     = false
+}
+
+variable "website" {
+  type        = any
+  description = "Static website hosting properties"
+  default     = {}
+}
+
+variable "logging" {
+  description = "Logging properties"
+  type        = any
+  default     = {}
+}
+
 variable "objects" {
   type        = map(any)
   description = ""

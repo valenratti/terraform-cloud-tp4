@@ -1,38 +1,57 @@
 locals {
-  bucket_name = "b123123123123-itba-cloud-computing"
-  path        = "../resources"
+  path = "../resources"
+}
 
+locals {
+  bucket_name = "website-grupo8-20221c-itba-cloud-computing"
   s3 = {
+    static_website = {
+      # 1 - Website
+      website = {
+        bucket_name = local.bucket_name
+        path        = "../resources"
 
-    # 1 - Website
-    website = {
-      bucket_name = local.bucket_name
-      path        = "../resources"
-
-      objects = {
-        error = {
-          filename     = "html/error.html"
-          content_type = "text/html"
+        website = {
+          index_document = "index.html"
+          error_document = "error.html"
         }
-        # image1 = {
-        #   filename     = "images/image1.png"
-        #   content_type = "image/png"
-        # }
-        # image2 = {
-        #   filename     = "images/image2.jpg"
-        #   content_type = "image/jpeg"
-        # }
-      }
-    }
 
-    # 2 - WWW Website
-    www-website = {
-      bucket_name = "www.${local.bucket_name}"
+        objects = {
+          index = {
+            filename     = "html/index.html"
+            content_type = "text/html"
+          }
+          error = {
+            filename     = "html/error.html"
+            content_type = "text/html"
+          }
+          image1 = {
+            filename     = "images/image1.png"
+            content_type = "image/png"
+          }
+          image2 = {
+            filename     = "images/image2.jpg"
+            content_type = "image/jpeg"
+          }
+        }
+      }
+
+      # 2 - WWW Website
+      www-website = {
+        bucket_name = "www.${local.bucket_name}"
+        website = {
+          redirect_all_requests_to = {
+            protocol  = "http"
+            host_name = "${local.bucket_name}.s3-website-${data.aws_region.current.name}.amazonaws.com"
+          }
+        }
+      }
     }
 
     #3 - Logs
     logs = {
-      bucket_name = "${local.bucket_name}/logs"
+      bucket_name = "logs-${local.bucket_name}"
+      acl         = "log-delivery-write"
     }
   }
 }
