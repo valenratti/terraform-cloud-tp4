@@ -11,6 +11,7 @@ module "logs" {
 
   bucket_name = local.s3.logs.bucket_name
   bucket_acl  = local.s3.logs.acl
+  force_destroy = true
 }
 
 module "website" {
@@ -22,6 +23,7 @@ module "website" {
   }
 
   bucket_name = each.value.bucket_name
+  force_destroy = true
   website     = try(each.value.website, null)
   logging = {
     target_bucket = module.logs.bucket_id

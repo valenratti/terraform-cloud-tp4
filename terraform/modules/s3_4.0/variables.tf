@@ -13,6 +13,12 @@ variable "object_lock_enabled" {
   default     = false
 }
 
+variable "force_destroy" {
+  type        = bool
+  description = "Boolean to set force destroy"
+  default     = false
+}
+
 variable "website" {
   type        = any
   description = "Static website hosting properties"
