@@ -33,6 +33,10 @@ resource "aws_lambda_function" "dynamodb_lambda" {
   handler          = "lambda_handler.main"
   runtime          = "python3.9"
 
+  tags = {
+    Name = "DynamoDB Lambda"
+  }
+
   vpc_config {
     subnet_ids         = [module.lambda_vpc.private_subnet_id]
     security_group_ids = [module.lambda_vpc.default_security_group_id]
@@ -54,6 +58,10 @@ resource "aws_lambda_function" "sns_lambda" {
   vpc_config {
     subnet_ids         = [module.lambda_vpc.private_subnet_id]
     security_group_ids = [module.lambda_vpc.default_security_group_id]
+  }
+
+  tags = {
+    Name = "SNS Lambda"
   }
 
   environment {

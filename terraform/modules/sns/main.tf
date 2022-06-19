@@ -1,6 +1,10 @@
 resource "aws_sns_topic" "this" {
   name = var.name
 
+  tags = {
+    Name = var.name
+  }
+
   display_name = try(var.display_name, var.name)
   fifo_topic   = var.fifo_topic
 }

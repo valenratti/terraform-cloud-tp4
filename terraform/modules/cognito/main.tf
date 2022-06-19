@@ -10,5 +10,15 @@ resource "aws_cognito_user_pool" "cognito_pool" {
     require_uppercase = true
   }
 
+  username_configuration {
+    case_sensitive = false
+  }
 
+  email_configuration {
+    email_sending_account = "COGNITO_DEFAULT"
+  }
+
+  tags = {
+    Name = var.pool_name
+  }
 }

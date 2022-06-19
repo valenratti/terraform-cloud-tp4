@@ -9,6 +9,10 @@ resource "aws_api_gateway_rest_api" "this" {
 
   name        = "AWSAPIGateway-${local.bucket_name}"
   description = "Created by the Group 8 team"
+
+  tags = {
+    Name = "Api Gateway rest"
+  }
 }
 
 resource "aws_api_gateway_resource" "this" {

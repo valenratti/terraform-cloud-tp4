@@ -5,7 +5,7 @@ module "dynamodb" {
     aws = aws.aws
   }
 
-  table_name = "positions"
+  table_name = "Positions"
 
   read_capacity = 5
 
